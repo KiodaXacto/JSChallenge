@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { Dropdown, FormControl } from "react-bootstrap";
+import { Dropdown, FormControl, Button } from "react-bootstrap";
 
 //styling
 import "./style.css";
@@ -47,8 +47,12 @@ function Filter(props) {
         setFilter(value);
         props.onChange(value);
     }
+    const clickHandler = ()=>{
+        props.export();
+    }
     return (
         <div className="DropDownList">
+            <Button variant="success" onClick = {clickHandler}>Download as CSV</Button>
             <Dropdown onSelect={onSelectHandler}>
                 <Dropdown.Toggle id="dropdown-custom-components">
                     Orbiting Body ({filter===""?"All":filter})

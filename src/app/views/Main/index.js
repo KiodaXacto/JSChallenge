@@ -1,7 +1,9 @@
 import React from 'react';
 import TableComponent from '../../components/TableComponent';
 import Filter from '../../components/Fiter';
-
+import constants from "../../constants/constants"
+//utils
+import toCsvFile from "../../utils/functions"
 //styling 
 import "./style.css";
 //mock
@@ -25,6 +27,7 @@ class Main extends React.Component {
 
         }
         this.parse = this.parse.bind(this);
+        this.download = this.download.bind(this);
     }
     //a compartor to compare tow lines of the fetched data
     comparator(a, b) {
@@ -119,6 +122,12 @@ class Main extends React.Component {
         });
         this.setState({ dataToShow: toShow, filter: value });
     }
+    //save data as csv file
+    download(){
+        //concatinating the table head with the table body
+        let data = [constants.chartHeader].concat(this.state.dataToShow);
+        toCsvFile(data);
+    }
     render() {
         let toRednder = "";
 
@@ -132,7 +141,7 @@ class Main extends React.Component {
         }
         return (
             <>
-                <Filter options={this.state.orbits} onChange={this.parse} />
+                <Filter options={this.state.orbits} onChange={this.parse} export = {this.download}/>
                 <div className="container">
                     {toRednder}
                 </div>
