@@ -7,7 +7,7 @@ import toCsvFile from "../../utils/functions"
 //styling 
 import "./style.css";
 //mock
-//import nasaData from "../../moks/nasaData";
+import nasaData from "../../moks/nasaData";
 
 
 
@@ -40,7 +40,7 @@ class Main extends React.Component {
     }
     componentDidMount() {
         //using the fetch API to fetch the data from the server;
-
+/*
         fetch("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=DEMO_KEY")
             .then(res => res.json())
             .then(data => {
@@ -71,35 +71,35 @@ class Main extends React.Component {
                 this.setState({ orbits: orbits });
             })
             .catch(() => this.setState({ error: true }))
-
+*/
         //item.estimated_diameter.kilometers.estimated_diameter_min
-        //for the main time i'm going to use a mock so i can prepare the data since the nasa api limits the number of calls
-        //    let data = nasaData;
-        //    let parsedData = this.state.data;
-        //    let orbits = this.state.orbits;
-        //    let hash = {};
-        //    data.near_earth_objects.forEach(item=>{
-        //        //preparing the list of orbiting bodies
-        //        let orbit = [];
-        //        item.close_approach_data.forEach(it=>{
-        //            //here we prepare the final list of orgits
-        //            if(!hash[it.orbiting_body]){
-        //                hash[it.orbiting_body] = true;
-        //                orbits.push(it.orbiting_body);
-        //            }
-        //            orbit.push(it.orbiting_body)
-        //         })
-        //        //in the previous step the data has this structure [nam, min diametern, max diameter];
-        //        // now we ara going to add a list of orbits at the end
-        //        parsedData.push([item.name,item.estimated_diameter.kilometers.estimated_diameter_min,item.estimated_diameter.kilometers.estimated_diameter_max, orbit])
-        //     })
-        //     if(parsedData.length === 0){
-        //            throw new Error("Error");
-        //        }
-        //    this.setState({data: parsedData});
-        //    this.parse("");
-        //    this.setState({ charging: false});
-        //    this.setState({ orbits: orbits});
+//        for the main time i'm going to use a mock so i can prepare the data since the nasa api limits the number of calls
+           let data = nasaData;
+           let parsedData = this.state.data;
+           let orbits = this.state.orbits;
+           let hash = {};
+           data.near_earth_objects.forEach(item=>{
+               //preparing the list of orbiting bodies
+               let orbit = [];
+               item.close_approach_data.forEach(it=>{
+                   //here we prepare the final list of orgits
+                   if(!hash[it.orbiting_body]){
+                       hash[it.orbiting_body] = true;
+                       orbits.push(it.orbiting_body);
+                   }
+                   orbit.push(it.orbiting_body)
+                })
+               //in the previous step the data has this structure [nam, min diametern, max diameter];
+               // now we ara going to add a list of orbits at the end
+               parsedData.push([item.name,item.estimated_diameter.kilometers.estimated_diameter_min,item.estimated_diameter.kilometers.estimated_diameter_max, orbit])
+            })
+            if(parsedData.length === 0){
+                   throw new Error("Error");
+               }
+           this.setState({data: parsedData});
+           this.parse("");
+           this.setState({ charging: false});
+           this.setState({ orbits: orbits});
 
 
     }

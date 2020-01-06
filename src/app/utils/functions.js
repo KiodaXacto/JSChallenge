@@ -1,11 +1,12 @@
-export default function toCsvFile(data){
+export default function toCsvFile(data) {
     console.table(data);
-    let csvData = [];
-    data.map(item=>item.join(","));
-    csvData = csvData.join("%0A");
+    let csvData = data.map(item => item.join(","));
+    csvData = csvData.join("\r\n");
+    let blob = new Blob([csvData]);
     let a = document.createElement("a");
-    a.href = "data:attachement/csv"+csvData;
+
+    a.href = window.URL.createObjectURL(blob, { type: "text/plain" });
     a.targe = "_BLANK";
-    a.download="NEO.csv";
+    a.download = "NEO_.csv";
     a.click();
 }
