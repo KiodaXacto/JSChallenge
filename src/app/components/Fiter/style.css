@@ -1,0 +1,6 @@
+div.DropDownList{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0 240px;
+}
