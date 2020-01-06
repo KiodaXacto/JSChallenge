@@ -1,11 +1,13 @@
 import React from 'react';
-import Chart from '../../components/Chart';
+import TableComponent from '../../components/TableComponent';
+import Filter from '../../components/Fiter';
 
 //styling 
 import "./style.css";
 //mock
 //import nasaData from "../../moks/nasaData";
-import Filter from '../../components/Fiter';
+
+
 
 
 
@@ -125,8 +127,8 @@ class Main extends React.Component {
         } else if (this.state.charging) {
             toRednder = <h2>charging...</h2>
         } else {
-            toRednder = <Chart data={this.state.dataToShow} />
-
+            //display the data as table
+            toRednder = <TableComponent data={this.state.dataToShow}/>;
         }
         return (
             <>

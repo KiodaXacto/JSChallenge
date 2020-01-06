@@ -1,2 +1,2 @@
-### now in this step we are going to add a filter component 
-### I'm going to use react-bootstrap so I can create a dropdown with a surch bar
+### in the third step we are goin to Display the data as a table
+### for that we are going to use the table component from react-bootstrap
